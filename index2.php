@@ -1,54 +1,54 @@
 <?php
-session_start();
-require "source/config.php";
-$config = readConfig();
+// session_start();
+// require "source/config.php";
+// $config = readConfig();
 
 // 定义根目录
-$root_dir = './disk';
+// $root_dir = './disk';
 
 // 获取当前目录
-$current_dir = $_GET['dir'] ?? $root_dir;
+// $current_dir = $_GET['dir'] ?? $root_dir;
 
 // 检查目录是否存在
-if (!is_dir($current_dir)) {
-    mkdir($current_dir);
-}
+// if (!is_dir($current_dir)) {
+//     mkdir($current_dir);
+// }
 
 // 读取当前目录下的文件和文件夹
-$files = scandir($current_dir);
+// $files = scandir($current_dir);
 
 // 获取Host的值
-$host = $_SERVER['HTTP_HOST'];
+// $host = $_SERVER['HTTP_HOST'];
 
-function is_binary($filename) {
-    $finfo = finfo_open(FILEINFO_MIME_TYPE);
-    $mime_type = finfo_file($finfo, $filename);
-    finfo_close($finfo);
+// function is_binary($filename) {
+//     $finfo = finfo_open(FILEINFO_MIME_TYPE);
+//     $mime_type = finfo_file($finfo, $filename);
+//     finfo_close($finfo);
 
-    return strpos($mime_type, 'text') === false;
-}
+//     return strpos($mime_type, 'text') === false;
+// }
 
-header('Content-Type: charset=utf-8');
+// header('Content-Type: charset=utf-8');
 
-?>
+// ?>
 
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Files</title>
-    <style>
-        a {
-            color: blue;
-        }
-    </style>
-</head>
-<body style="
-        background: lightgray;
-">
+<!-- // <!DOCTYPE html>
+// <html lang="zh-CN">
+// <head>
+//     <meta charset="UTF-8">
+//     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//     <title>Files</title>
+//     <style>
+//         a {
+//             color: blue;
+//         }
+//     </style>
+// </head>
+// <body style="
+//         background: lightgray;
+// "> -->
 
-<form action="upload.php" method="post" enctype="multipart/form-data">
+<!-- <form action="upload.php" method="post" enctype="multipart/form-data">
         <label style="font-size: 15px;">上传文件</label>
         <input type="file" name="file" id="file">
         <progress id="progress" value="0" max="100"></progress>
@@ -76,9 +76,9 @@ header('Content-Type: charset=utf-8');
                 });
                 xhr.send(formData);
         });
-</script>
+</script> -->
 
-<div style="display:flex">
+<!-- <div style="display:flex">
     <form action="create_dir.php" method="post" enctype="multipart/form-data">
             <input type="text" placeholder="新建文件夹" id="folderName" name="folderName" required>
             <input type="submit" name="create" value="创建">
@@ -88,9 +88,9 @@ header('Content-Type: charset=utf-8');
             <input type="text" placeholder="新建文件" id="fileName" name="fileName" required>
             <input type="submit" name="create" value="创建">
     </form>
-</div>
+</div> -->
 
-<hr>
+<!-- <hr> -->
 
 <ul>
     <?php foreach ($files as $file) : ?>

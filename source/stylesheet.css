@@ -1,3 +1,15 @@
 body {
     background: lightgray;
 }
+
+a {
+    color: blue;
+}
+
+label {
+    font-size: 15px;
+}
+
+#create_file_folder {
+    display: flex;
+}
