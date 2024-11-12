@@ -34,19 +34,38 @@ header('Content-Type: charset=utf-8');
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="source/stylesheet.css">
-        <script src="source/upload_bar.js"></script>
         <title>PHP drive</title>
     </head>
     <body>
         
         <!-- upload form -->
         <?php if ($permissions['fileUpload'] === true): ?>
-            <form action="filectrl/upload.php" method="post" enctype="multipart/form-data">
+            <form action="/filectrl/upload.php" method="post" enctype="multipart/form-data">
                 <label>上传文件</label>
                 <input type="file" name="file" id="file">
                 <progress id="progress" value="0" max="100"></progress>
                 <input type="submit" value="上传" hidden>
             </form>
+            <script>
+                const fileInput = document.getElementById('file');
+                const progressBar = document.getElementById('progress');
+                const submitButton = document.querySelector('input[type="submit"]');
+                fileInput.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    const formData = new FormData();
+                    formData.append('file', file);
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/filectrl/upload.php');
+                    xhr.upload.addEventListener('progress', (e) => {
+                        const progress = Math.round((e.loaded / e.total) * 100);
+                        progressBar.value = progress;
+                        if (progress === 100) {
+                            submitButton.click();
+                        }
+                    });
+                    xhr.send(formData);
+                });
+            </script>
         <?php endif; ?>
         <!-- upload form -->
 
