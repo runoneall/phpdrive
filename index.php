@@ -18,6 +18,12 @@ if (!is_dir($current_dir)) {
 }
 $files=scandir($current_dir);
 
+// ban root visit
+if (strpos($current_dir, $root_dir) !== 0) {
+    header('Location: /');
+    exit;
+}
+
 // set header
 header('Content-Type: charset=utf-8');
 ?>
@@ -75,15 +81,51 @@ header('Content-Type: charset=utf-8');
                 <?php $path=$current_dir.'/'.$file; ?>
                 <!-- if folder -->
                 <?php if (is_dir($path)): ?>
-                    #
+                    <li>
+                        <a href="?dir=<?php echo $path; ?>"><?php echo $file; ?></a>
+                        <!-- if allow delete folder -->
+                        <?php if ($permissions['folderDelete'] === true): ?>
+                            &nbsp;[<a href="filectrl/rmdirfile.php?dir=<?php echo $path; ?>">删除</a>]
+                        <?php endif; ?>
+                    </li>
                 <?php endif; ?>
                 <!-- if file -->
                 <?php if (is_file($path)): ?>
-                    #
+                    <li>
+                        <a href="<?php echo $path; ?>"><?php echo $file; ?></a>
+                        <!-- if allow edit file & file not binary -->
+                        <?php if ($permissions['fileEditor'] === true && is_binary($path) === false): ?>
+                            &nbsp;[<a href="filectrl/edit_text.php?file=<?php echo $path; ?>">编辑</a>]
+                        <?php endif; ?>
+                        <!-- if allow delete file -->
+                        <?php if ($permissions['fileDelete'] === true): ?>
+                            &nbsp;[<a href="filectrl/rmdirfile.php?file=<?php echo $path; ?>">删除</a>]
+                        <?php endif; ?>
+                    </li>
                 <?php endif; ?>
             <?php endforeach; ?>
         </ul>
         <!-- file list -->
 
+        <!-- up dir -->
+        <?php if ($current_dir !== $root_dir): ?>
+            <a href="?dir=<?php echo dirname($current_dir); ?>">返回上一级</a>
+        <?php endif; ?>
+        <!-- up dir -->
+
+        <hr>
+
+        <!-- admin panel link -->
+        <a href="/admin">进入管理面板</a>
+        <!-- admin panel link -->
+
     </body>
 </html>
+
+<!-- set session -->
+<?php
+$_SESSION['root_dir']=$root_dir;
+$_SESSION['current_dir']=$current_dir;
+$_SESSION['host']=$host;
+?>
+<!-- set session -->

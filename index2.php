@@ -92,7 +92,7 @@
 
 <!-- <hr> -->
 
-<ul>
+<!-- <ul>
     <?php foreach ($files as $file) : ?>
         <?php if ($file === '.' || $file === '..') continue; ?>
         <?php $path = $current_dir . '/' . $file; ?>
@@ -114,7 +114,7 @@
             </li>
         <?php endif; ?>
     <?php endforeach; ?>
-</ul>
+</ul> -->
 
 <?php if ($current_dir !== $root_dir) : ?>
     <a href="?dir=<?php echo dirname($current_dir); ?>">返回上一级</a>
@@ -122,12 +122,12 @@
 
 <hr>
 
-<!-- <form action="admin-login.php" method="post" enctype="multipart/form-data">
+<form action="admin-login.php" method="post" enctype="multipart/form-data">
     进入后台
     <input type="text" placeholder="用户名" id="UserName" name="UserName" required>
     <input type="password" placeholder="密码" id="Password" name="Password" required>
     <input type="submit" value="登录">
-</form> -->
+</form>
 
 <?php
 // echo $current_dir;
