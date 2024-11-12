@@ -2,8 +2,8 @@
 session_start();
 
 // imports
-require "source/config.php";
-require "source/tool.php";
+require "config.php";
+require "tool.php";
 
 // set variable
 $config=readConfig();
@@ -33,14 +33,14 @@ header('Content-Type: charset=utf-8');
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="source/stylesheet.css">
+        <link rel="stylesheet" href="stylesheet.css">
         <title>PHP drive</title>
     </head>
     <body>
         
         <!-- upload form -->
         <?php if ($permissions['fileUpload'] === true): ?>
-            <form action="/filectrl/upload.php" method="post" enctype="multipart/form-data">
+            <form action="upload.php" method="post" enctype="multipart/form-data">
                 <label>上传文件</label>
                 <input type="file" name="file" id="file">
                 <progress id="progress" value="0" max="100"></progress>
@@ -55,7 +55,7 @@ header('Content-Type: charset=utf-8');
                     const formData = new FormData();
                     formData.append('file', file);
                     const xhr = new XMLHttpRequest();
-                    xhr.open('POST', '/filectrl/upload.php');
+                    xhr.open('POST', 'upload.php');
                     xhr.upload.addEventListener('progress', (e) => {
                         const progress = Math.round((e.loaded / e.total) * 100);
                         progressBar.value = progress;
@@ -72,7 +72,7 @@ header('Content-Type: charset=utf-8');
         <!-- create file & folder form -->
         <div id="create_file_folder">
             <?php if ($permissions['folderCreate'] === true): ?>
-                <form action="filectrl/create_dir.php" method="post" enctype="multipart/form-data">
+                <form action="create_dir.php" method="post" enctype="multipart/form-data">
                     <input type="text" placeholder="新建文件夹" id="folderName" name="folderName" required>
                     <input type="submit" name="create" value="创建">
                 </form>
@@ -81,7 +81,7 @@ header('Content-Type: charset=utf-8');
                 &nbsp;&nbsp; || &nbsp;&nbsp;
             <?php endif; ?>
             <?php if ($permissions['fileCreate'] === true): ?>
-                <form action="filectrl/create_file.php" method="post" enctype="multipart/form-data">
+                <form action="create_file.php" method="post" enctype="multipart/form-data">
                     <input type="text" placeholder="新建文件" id="fileName" name="fileName" required>
                     <input type="submit" name="create" value="创建">
                 </form>
@@ -104,7 +104,7 @@ header('Content-Type: charset=utf-8');
                         <a href="?dir=<?php echo $path; ?>"><?php echo $file; ?></a>
                         <!-- if allow delete folder -->
                         <?php if ($permissions['folderDelete'] === true): ?>
-                            &nbsp;[<a href="filectrl/rmdirfile.php?dir=<?php echo $path; ?>">删除</a>]
+                            &nbsp;[<a href="rmdirfile.php?dir=<?php echo $path; ?>">删除</a>]
                         <?php endif; ?>
                     </li>
                 <?php endif; ?>
@@ -114,11 +114,11 @@ header('Content-Type: charset=utf-8');
                         <a href="<?php echo $path; ?>"><?php echo $file; ?></a>
                         <!-- if allow edit file & file not binary -->
                         <?php if ($permissions['fileEditor'] === true && is_binary($path) === false): ?>
-                            &nbsp;[<a href="filectrl/edit_text.php?file=<?php echo $path; ?>">编辑</a>]
+                            &nbsp;[<a href="edit_text.php?file=<?php echo $path; ?>">编辑</a>]
                         <?php endif; ?>
                         <!-- if allow delete file -->
                         <?php if ($permissions['fileDelete'] === true): ?>
-                            &nbsp;[<a href="filectrl/rmdirfile.php?file=<?php echo $path; ?>">删除</a>]
+                            &nbsp;[<a href="rmdirfile.php?file=<?php echo $path; ?>">删除</a>]
                         <?php endif; ?>
                     </li>
                 <?php endif; ?>
