@@ -2,18 +2,16 @@
 session_start();
 
 // imports
-require $_SERVER['DOCUMENT_ROOT']."/source/config.php";
+require "config.php";
 
 // set variable
 $config=readConfig();
 $current_dir=$_SESSION['current_dir'];
 $host=$_SESSION['host'];
 
-// get form data
-$file=$_FILES['file'];
-
 // save upload data
-if (isset($file)) {
+if (isset($_FILES['file'])) {
+    $file=$_FILES['file'];
 
     // check size
     if ($file['size'] > $config['uploadMaxSize']) {
@@ -25,9 +23,9 @@ if (isset($file)) {
     move_uploaded_file($file['tmp_name'], $targetFile);
 
     // back
-    // header('Location: /?dir='.$current_dir);
-    echo '上传成功';
-} else {
     header('Location: /?dir='.$current_dir);
+} else {
+    // header('Location: /?dir='.$current_dir);
+    echo "请选择要上传的文件。";
 }
 ?>

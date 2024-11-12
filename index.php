@@ -44,12 +44,12 @@ header('Content-Type: charset=utf-8');
                 <label>上传文件</label>
                 <input type="file" name="file" id="file">
                 <progress id="progress" value="0" max="100"></progress>
-                <input type="submit" value="上传" hidden>
+                <input type="submit" value="上传" id="uploadFile" hidden>
             </form>
             <script>
                 const fileInput = document.getElementById('file');
                 const progressBar = document.getElementById('progress');
-                const submitButton = document.querySelector('input[type="submit"]');
+                const submitButton = document.getElementById('uploadFile');
                 fileInput.addEventListener('change', (e) => {
                     const file = e.target.files[0];
                     const formData = new FormData();
