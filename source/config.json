@@ -8,11 +8,9 @@
         "fileEditor": true,
         "folderCreate": true,
         "folderDelete": true
-    }
+    },
     "banned": [
         "*.html",
-        "*.css",
-        "*.js",
-        
+        "*.php"
     ]
 }
