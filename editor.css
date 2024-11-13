@@ -10,6 +10,7 @@
     background: none;
     font-family: monospace;
     font-size: large;
+    width: 95%;
 }
 .editor-menu {
     display: flex;
