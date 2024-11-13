@@ -45,5 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         header('Location: /?dir='.$current_dir);
     }
+} else {
+    header('Location: /?dir='.$current_dir);
 }
 ?>
