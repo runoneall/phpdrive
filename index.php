@@ -111,7 +111,7 @@ header('Content-Type: text/html;charset=utf-8');
         <!-- file list -->
 
         <!-- load README.md -->
-        <?php if (file_exists($readme_file_path)): ?>
+        <?php if ($config['showREADME'] === true && file_exists($readme_file_path)): ?>
             <div id="README"></div>
             <script src="marked.min.js"></script>
             <script>
