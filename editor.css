@@ -1,9 +1,26 @@
 .editor-menu {
     display: flex;
+    align-items: center;
     width: 100%-10px;
     height: 30px;
     border: 2px solid gray;
     border-bottom: none;
+}
+#unsave {
+    font-size: large;
+    font-family: monospace;
+    text-decoration: none;
+    vertical-align: middle;
+}
+#unsave:hover {
+    cursor: default;
+}
+#save {
+    background: none;
+    border: none;
+    color: blue;
+    font-size: large;
+    font-family: monospace;
 }
 .editor-container {
     display: flex;

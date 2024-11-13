@@ -51,19 +51,18 @@ header('Content-Type: text/html;charset=utf-8');
         <title>BuildIn Editor</title>
     </head>
     <body>
-        
-        <!-- init editor -->
         <form action="edit_text.php" method="post">
             <div class="editor-menu">
-                <button onclick="back_redirect(`/`)">放弃并返回</button>
-                <button onclick="back_redirect('https://www.google.com')">跳转到Google</button>
+                &nbsp;&nbsp;
+                <a id="unsave" href="/?dir=<?php echo $current_dir; ?>">不保存并退出</a>
+                &nbsp;&nbsp;
+                <input id="save" type="submit" value="保存并继续">
             </div>
             <div class="editor-container">
                 <div class="line-numbers"></div>
-                <textarea id="editor"><?php echo file_get_contents($file_path); ?></textarea>
+                <textarea id="editor" name="editor"><?php echo file_get_contents($file_path); ?></textarea>
             </div>
             <script src="line_num.js"></script>
         </form>
-
     </body>
 </html>
