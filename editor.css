@@ -1,0 +1,28 @@
+.editor-container {
+    display: flex;
+    align-items: flex-start;
+    border: 2px solid gray;
+}
+.line-numbers {
+    font-family: monospace;
+    padding: 0.5em;
+    text-align: right;
+    user-select: none;
+}
+.line-numbers span {
+    display: block;
+    min-height: 1em;
+}
+#editor {
+    flex: 1;
+    padding: 0.5em;
+    resize: none;
+    width: 100%;
+    height: auto;
+    font-family: monospace;
+    border: 2px solid gray;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    outline: none;
+}

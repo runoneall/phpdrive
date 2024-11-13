@@ -13,3 +13,7 @@ label {
 #create_file_folder {
     display: flex;
 }
+
+#README {
+    background: lightsteelblue;
+}

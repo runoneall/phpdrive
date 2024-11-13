@@ -11,6 +11,7 @@ $permissions=$config['permissions'];
 $root_dir=$config['rootFolder'];
 $current_dir=$_GET['dir'] ?? $root_dir;
 $host=$_SERVER['HTTP_HOST'];
+$readme_file_path=$current_dir.'/README.md';
 
 // read files
 if (!is_dir($current_dir)) {
@@ -25,7 +26,7 @@ if (!is_have($current_dir, $root_dir) || is_have($current_dir, '..')) {
 }
 
 // set header
-header('Content-Type: charset=utf-8');
+header('Content-Type: text/html;charset=utf-8');
 ?>
 
 <!DOCTYPE html>
@@ -46,26 +47,7 @@ header('Content-Type: charset=utf-8');
                 <progress id="progress" value="0" max="100"></progress>
                 <input type="submit" value="上传" id="fileUploadsubmit" hidden>
             </form>
-            <script>
-                const fileInput = document.getElementById('file');
-                const progressBar = document.getElementById('progress');
-                const submitButton = document.getElementById('fileUploadsubmit');
-                fileInput.addEventListener('change', (e) => {
-                    const file = e.target.files[0];
-                    const formData = new FormData();
-                    formData.append('file', file);
-                    const xhr = new XMLHttpRequest();
-                    xhr.open('POST', 'upload.php');
-                    xhr.upload.addEventListener('progress', (e) => {
-                        const progress = Math.round((e.loaded / e.total) * 100);
-                        progressBar.value = progress;
-                        if (progress === 100) {
-                            submitButton.click();
-                        }
-                    });
-                    xhr.send(formData);
-                });
-            </script>
+            <script src="upload.js"></script>
         <?php endif; ?>
         <!-- upload form -->
 
@@ -127,6 +109,18 @@ header('Content-Type: charset=utf-8');
             <?php endforeach; ?>
         </ul>
         <!-- file list -->
+
+        <!-- load README.md -->
+        <?php if (file_exists($readme_file_path)): ?>
+            <div id="README"></div>
+            <script src="marked.min.js"></script>
+            <script>
+                const README_BOX = document.getElementById("README")
+                README_BOX.innerHTML = marked.parse(`<?php echo get_readme_content($readme_file_path); ?>`);
+            </script>
+        <?php endif; ?>
+        <br>
+        <!-- load README.md -->
 
         <!-- up dir -->
         <?php if ($current_dir !== $root_dir): ?>
