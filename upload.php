@@ -25,11 +25,13 @@ if (isset($_FILES['file'])) {
     $fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
     if (in_array(strtolower($fileExtension), $banned)) {
         header('Location: /?dir='.$current_dir);
+        exit;
     }
 
     // check size
     if ($file['size'] > $config['uploadMaxSize']) {
         header('Location: /?dir='.$current_dir);
+        exit;
     }
 
     // save file
