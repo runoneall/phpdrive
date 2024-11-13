@@ -118,8 +118,8 @@ header('Content-Type: text/html;charset=utf-8');
                 const README_BOX = document.getElementById("README")
                 README_BOX.innerHTML = marked.parse(`<?php echo get_readme_content($readme_file_path); ?>`);
             </script>
+            <br>
         <?php endif; ?>
-        <br>
         <!-- load README.md -->
 
         <!-- up dir -->
