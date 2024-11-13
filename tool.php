@@ -1,10 +1,20 @@
 <?php
 
-function is_binary($filename) {
-    $finfo = finfo_open(FILEINFO_MIME_TYPE);
-    $mime_type = finfo_file($finfo, $filename);
-    finfo_close($finfo);
-    return strpos($mime_type, 'text') === false;
+function is_binary($filePath) {
+    $handle = fopen($filePath, 'rb');
+    if ($handle === false) {
+        throw new Exception("无法打开文件: $filePath");
+    }
+    $buffer = fread($handle, 1024);
+    fclose($handle);
+    for ($i = 0; $i < strlen($buffer); $i++) {
+        $byte = $buffer[$i];
+        $ord = ord($byte);
+        if ($ord < 32 && $ord != 9 && $ord != 10 && $ord != 13) {
+            return true;
+        }
+    }
+    return false;
 }
 
 function is_have($string, $char) {
