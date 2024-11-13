@@ -101,6 +101,7 @@ header('Content-Type: charset=utf-8');
                 <!-- if folder -->
                 <?php if (is_dir($path)): ?>
                     <li>
+                        <img src="/folder.gif">
                         <a href="?dir=<?php echo $path; ?>"><?php echo $file; ?></a>
                         <!-- if allow delete folder -->
                         <?php if ($permissions['folderDelete'] === true): ?>
@@ -111,6 +112,7 @@ header('Content-Type: charset=utf-8');
                 <!-- if file -->
                 <?php if (is_file($path)): ?>
                     <li>
+                        <img src="/file.gif">
                         <a href="<?php echo $path; ?>"><?php echo $file; ?></a>
                         <!-- if allow edit file & file not binary -->
                         <?php if ($permissions['fileEditor'] === true && is_binary($path) === false): ?>
