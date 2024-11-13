@@ -19,7 +19,7 @@ if (!is_dir($current_dir)) {
 $files=scandir($current_dir);
 
 // ban root visit
-if (strpos($current_dir, $root_dir) !== 0) {
+if (!is_have($current_dir, $root_dir)) {
     header('Location: /');
     exit;
 }
@@ -135,7 +135,7 @@ header('Content-Type: charset=utf-8');
         <hr>
 
         <!-- admin panel link -->
-        <a href="/admin">进入管理面板</a>
+        <a href="/admin-panel.php">进入管理面板</a>
         <!-- admin panel link -->
 
     </body>

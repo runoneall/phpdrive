@@ -1,29 +1,33 @@
 <?php
 session_start();
-$current_dir = $_SESSION["current_dir"];
-$host = $_SESSION["HTTP_Host"];
-$dir_path = $_GET['dir'];
-$file_path = $_GET['file'];
-if (empty($file_path)) {
-    function rrmdir($dir) {
-        if (is_dir($dir)) {
-            $objects = scandir($dir);
-            foreach ($objects as $object) {
-                if ($object != "." && $object != "..") {
-                    if (is_dir($dir."/".$object)) {
-                        rrmdir($dir."/".$object);
-                    } else {
-                        unlink($dir."/".$object);
-                    }
-                }
-            }
-            rmdir($dir);
-        }
-    };
+
+// imports
+require "config.php";
+require "tool.php";
+
+// set variable
+$config=readConfig();
+$current_dir=$_SESSION['current_dir'];
+$root_dir=$_SESSION['root_dir'];
+$host=$_SESSION['host'];
+$dir_path=$_GET['dir'] ?? "";
+$file_path=$_GET["file"] ?? "";
+
+// ban root rm
+if (!is_have($dir_path, $root_dir) || !is_have($file_path, $root_dir)) {
+    header('Location: /');
+    exit;
+}
+
+// if rm dir
+if (!empty($dir_path)) {
     rrmdir($dir_path);
-    header("Location: /?dir=".$current_dir);
-} else {
+    header('Location: /?dir='.$current_dir);
+}
+
+// if rm file
+if (!empty($file_path)) {
     unlink($file_path);
-    header("Location: http://".$host."/?dir=".$current_dir);
+    header('Location: /?dir='.$current_dir);
 }
 ?>
