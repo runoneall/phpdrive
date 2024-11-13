@@ -25,7 +25,6 @@ if (isset($_FILES['file'])) {
     // back
     header('Location: /?dir='.$current_dir);
 } else {
-    // header('Location: /?dir='.$current_dir);
-    echo "请选择要上传的文件。";
+    header('Location: /?dir='.$current_dir);
 }
 ?>
