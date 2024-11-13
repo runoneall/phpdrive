@@ -19,7 +19,7 @@ if (!is_dir($current_dir)) {
 $files=scandir($current_dir);
 
 // ban root visit
-if (!is_have($current_dir, $root_dir)) {
+if (!is_have($current_dir, $root_dir) || is_have($current_dir, '..')) {
     header('Location: /');
     exit;
 }
