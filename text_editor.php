@@ -53,11 +53,17 @@ header('Content-Type: text/html;charset=utf-8');
     <body>
         
         <!-- init editor -->
-        <div class="editor-container">
-            <div class="line-numbers"></div>
-            <textarea id="editor"></textarea>
-        </div>
-        <script src="editor.js"></script>
+        <form action="edit_text.php" method="post">
+            <div class="editor-menu">
+                <button onclick="back_redirect(`/`)">放弃并返回</button>
+                <button onclick="back_redirect('https://www.google.com')">跳转到Google</button>
+            </div>
+            <div class="editor-container">
+                <div class="line-numbers"></div>
+                <textarea id="editor"><?php echo file_get_contents($file_path); ?></textarea>
+            </div>
+            <script src="line_num.js"></script>
+        </form>
 
     </body>
 </html>
