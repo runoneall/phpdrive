@@ -6,8 +6,15 @@ require "config.php";
 
 // set variable
 $config=readConfig();
+$permissions=$config['permissions'];
 $current_dir=$_SESSION['current_dir'];
 $host=$_SESSION['host'];
+
+// check permission
+if ($permissions['fileUpload'] !== true) {
+    header('Location: /');
+    exit;
+}
 
 // save upload data
 if (isset($_FILES['file'])) {

@@ -8,7 +8,7 @@ require "tool.php";
 // set variable
 $config=readConfig();
 $current_dir=$_SESSION['current_dir'];
-$root_dir=$_SESSION['root_dir'];
+$root_dir=$config['rootFolder'];
 $host=$_SESSION['host'];
 $dir_path=$_GET['dir'] ?? "";
 $file_path=$_GET["file"] ?? "";
