@@ -116,7 +116,7 @@ header('Content-Type: charset=utf-8');
                         <a href="<?php echo $path; ?>"><?php echo $file; ?></a>
                         <!-- if allow edit file & file not binary -->
                         <?php if ($permissions['fileEditor'] === true && is_binary($path) === false): ?>
-                            &nbsp;[<a href="edit_text.php?file=<?php echo $path; ?>">编辑</a>]
+                            &nbsp;[<a href="text_editor.php?file=<?php echo $path; ?>">编辑</a>]
                         <?php endif; ?>
                         <!-- if allow delete file -->
                         <?php if ($permissions['fileDelete'] === true): ?>

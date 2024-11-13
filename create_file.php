@@ -22,7 +22,7 @@ if ($permissions['fileCreate'] !== true) {
 // create file
 if (isset($_POST['create'])) {
     $fileName = $_POST['fileName'];
-    if (!empty($fileName) && !is_have($fileName, '.') && !is_have($fileName, '..')) {
+    if (!empty($fileName) && !is_have($fileName, '..')) {
         $targetFile = $current_dir.'/'.$fileName;
 
         // check forbidden
