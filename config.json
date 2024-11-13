@@ -11,7 +11,7 @@
         "folderDelete": true
     },
     "banned": [
-        "*.html",
-        "*.php"
+        "html",
+        "php"
     ]
 }

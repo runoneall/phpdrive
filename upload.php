@@ -7,6 +7,7 @@ require "config.php";
 // set variable
 $config=readConfig();
 $permissions=$config['permissions'];
+$banned=$config['banned'];
 $current_dir=$_SESSION['current_dir'];
 $host=$_SESSION['host'];
 
@@ -19,6 +20,12 @@ if ($permissions['fileUpload'] !== true) {
 // save upload data
 if (isset($_FILES['file'])) {
     $file=$_FILES['file'];
+
+    // check forbidden
+    $fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
+    if (in_array(strtolower($fileExtension), $banned)) {
+        header('Location: /?dir='.$current_dir);
+    }
 
     // check size
     if ($file['size'] > $config['uploadMaxSize']) {
