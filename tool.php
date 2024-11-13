@@ -7,8 +7,8 @@ function is_binary($filename) {
     return strpos($mime_type, 'text') === false;
 };
 
-function is_have($string, $chr) {
-    return (strpos($string, $chr) === 0);
+function is_have($string, $char) {
+    return (strpos($string, $char) !== false);
 }
 
 function rrmdir($dir) {
