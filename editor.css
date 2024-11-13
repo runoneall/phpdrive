@@ -1,3 +1,16 @@
+.file-info {
+    display: flex;
+    align-items: center;
+    width: 100%-10px;
+    height: 20px;
+}
+#file-path {
+    border: none;
+    outline: none;
+    background: none;
+    font-family: monospace;
+    font-size: large;
+}
 .editor-menu {
     display: flex;
     align-items: center;
