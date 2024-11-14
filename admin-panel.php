@@ -10,6 +10,7 @@ $config=readConfig();
 $root_dir=$config['rootFolder'];
 $current_dir=$_SESSION["current_dir"];
 $host=$_SESSION["host"];
+$username=get_login_username();
 
 // check login status
 if (!is_login()) {
@@ -28,24 +29,29 @@ if (!is_login()) {
         <title>Admin Panel</title>
     </head>
     <body>
-        <div class="tabs">
-            <a href="#tab1" class="tab-link">Tab 1</a>
-            <a href="#tab2" class="tab-link">Tab 2</a>
-            <a href="#tab3" class="tab-link">Tab 3</a>
-        </div>
+        <h1 id="title">Hello <?php echo $username; ?></h1>
+        <hr><br>
 
-        <div id="tab1" class="tab-content">
-            <h2>Content of Tab 1</h2>
-            <p>This is the content for tab 1.</p>
+        <!-- tabs -->
+        <div class="tabs">
+            <a href="#ChangeUsernamePassword" class="tab-link">更改用户名与密码</a>
+            <a href="#FunctionSettings" class="tab-link">功能设置</a>
+            <div id="endtab"></div>
         </div>
-        <div id="tab2" class="tab-content">
-            <h2>Content of Tab 2</h2>
-            <p>This is the content for tab 2.</p>
+        <!-- tabs -->
+
+        <!-- change username & password -->
+        <div id="ChangeUsernamePassword" class="tab-content">
+            <span>更改用户名与密码</span>
         </div>
-        <div id="tab3" class="tab-content">
-            <h2>Content of Tab 3</h2>
-            <p>This is the content for tab 3.</p>
+        <!-- change username & password -->
+
+        <!-- phpdrive function settings -->
+        <div id="FunctionSettings" class="tab-content">
+            <span>功能设置</span>
         </div>
+        <!-- phpdrive function settings -->
+
         <script src="tab.js"></script>
     </body>
 </html>

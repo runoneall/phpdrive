@@ -22,6 +22,12 @@ function set_login_status($username, $status) {
     setcookie("username", $username, 0, "*");
 }
 
+function get_login_username() {
+    if (isset($_COOKIE["username"])) {
+        return $_COOKIE["username"];
+    }
+}
+
 function is_login() {
     return (isset($_COOKIE["is_login"]) && $_COOKIE["is_login"] === "true");
 }
