@@ -32,6 +32,12 @@ function is_login() {
     return (isset($_COOKIE["is_login"]) && $_COOKIE["is_login"] === "true");
 }
 
+function is_checked($items, $item) {
+    if ($items[$item] === true) {
+        return 'checked';
+    }
+}
+
 function is_have($string, $char) {
     return (strpos($string, $char) !== false);
 }
