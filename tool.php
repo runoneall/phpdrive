@@ -28,6 +28,10 @@ function get_login_username() {
     }
 }
 
+function get_keys($dict) {
+    return array_keys($dict);
+}
+
 function is_login() {
     return (isset($_COOKIE["is_login"]) && $_COOKIE["is_login"] === "true");
 }
@@ -36,6 +40,7 @@ function is_checked($items, $item) {
     if ($items[$item] === true) {
         return 'checked';
     }
+    return '';
 }
 
 function is_have($string, $char) {

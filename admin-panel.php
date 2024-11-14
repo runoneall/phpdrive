@@ -8,6 +8,8 @@ require "tool.php";
 // set variable
 $config=readConfig();
 $root_dir=$config['rootFolder'];
+$permissions=$config['permissions'];
+$permissions_item=get_keys($permissions);
 $current_dir=$_SESSION["current_dir"];
 $host=$_SESSION["host"];
 $username=get_login_username();
@@ -36,7 +38,7 @@ if (!is_login()) {
         <div class="tabs">
             <a href="#ChangeUsernamePassword" class="tab-link">更改登入信息</a>
             <a href="#FunctionSettings" class="tab-link">功能设置</a>
-            <a href="#Logout" class="tab-link">登出</a>
+            <a href="#Logout" class="tab-link">退出</a>
             <div id="endtab"></div>
         </div>
         <!-- tabs -->
@@ -55,13 +57,48 @@ if (!is_login()) {
 
         <!-- phpdrive function settings -->
         <div id="FunctionSettings" class="tab-content">
-            <span>功能设置</span>
+            <form action="change-settings.php" method="post" enctype="multipart/form-data">
+                <table>
+
+                    <!-- normal -->
+                    <?php $checked=is_checked($config, 'showREADME'); ?>
+                    <?php $rootFolder=$config['rootFolder']; ?>
+                    <?php $uploadMaxSize=$config['uploadMaxSize']; ?>
+                    <tr>
+                        <th><label for="rootFolder">rootFolder</label></th>
+                        <td><input type="text" name="rootFolder" id="rootFolder" value="<?php echo $rootFolder; ?>"><br></td>
+                    </tr>
+                    <tr>
+                        <th><label for="uploadMaxSize">uploadMaxSize</label></th>
+                        <td><input type="number" name="uploadMaxSize" id="uploadMaxSize" value="<?php echo $uploadMaxSize; ?>"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="showREADME">showREADME</label></th>
+                        <td><input type="checkbox" name="showREADME" id="showREADME" <?php echo $checked; ?>></td>
+                    </tr>
+                    <!-- normal -->
+
+                    <!-- permissions -->
+                    <?php foreach ($permissions_item as $key): ?>
+                        <?php $checked=is_checked($permissions, $key); ?>
+                        <tr>
+                            <th><label for="<?php echo $key ?>"><?php echo $key ?></label></th>
+                            <td><input type="checkbox" name="permissions[]" value="<?php echo $key ?>" id="<?php echo $key ?>" <?php echo $checked ?>></td>
+                        </tr>
+                    <? endforeach ?>
+                    <!-- permissions -->
+
+                </table>
+                <input type="submit" value="保存更改">
+            </form>
         </div>
         <!-- phpdrive function settings -->
 
         <!-- logout -->
         <div id="Logout" class="tab-content">
-            <a href="/logout.php">确认登出</a>
+            <a href="/logout.php">退出登入</a>
+            &nbsp;&nbsp; || &nbsp;&nbsp;
+            <a href="/?dir=<?php echo $current_dir; ?>">仅返回</a>
         </div>
         <!-- logout -->
 
