@@ -61,7 +61,7 @@ if (!is_login()) {
                 <table>
 
                     <!-- normal -->
-                    <?php $checked=is_checked($config, 'showREADME'); ?>
+                    <?php $README_checked=is_checked($config, 'showREADME'); ?>
                     <?php $rootFolder=$config['rootFolder']; ?>
                     <?php $uploadMaxSize=$config['uploadMaxSize']; ?>
                     <tr>
@@ -74,7 +74,7 @@ if (!is_login()) {
                     </tr>
                     <tr>
                         <th><label for="showREADME">showREADME</label></th>
-                        <td><input type="checkbox" name="showREADME" id="showREADME" <?php echo $checked; ?>></td>
+                        <td><input type="checkbox" name="showREADME" id="showREADME" value="README_checked" <?php echo $README_checked; ?>></td>
                     </tr>
                     <!-- normal -->
 
@@ -88,8 +88,16 @@ if (!is_login()) {
                     <? endforeach ?>
                     <!-- permissions -->
 
+                    <!-- banned -->
+                    <?php $banned=$config['banned']; ?>
+                    <tr>
+                        <th><label for="banned">Banned Exp</label></th>
+                        <td><input type="text" name="banned" id="banned" value="<?php echo list_to_text($banned, ','); ?>"></td>
+                    </tr>
+                    <!-- banned -->
+
                 </table>
-                <input type="submit" value="保存更改">
+                <br><input type="submit" value="保存更改">
             </form>
         </div>
         <!-- phpdrive function settings -->

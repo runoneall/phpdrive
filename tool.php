@@ -32,6 +32,18 @@ function get_keys($dict) {
     return array_keys($dict);
 }
 
+function list_to_text($list, $split) {
+    $string = "";
+    foreach ($list as $item) {
+        $string = $string.$item.$split;
+    }
+    return $string;
+}
+
+function text_to_list($string, $split) {
+    return explode($split, $string);
+}
+
 function is_login() {
     return (isset($_COOKIE["is_login"]) && $_COOKIE["is_login"] === "true");
 }

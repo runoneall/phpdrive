@@ -1,0 +1,18 @@
+{
+  "login": "291c55bd5f735359196614f3fd76a5a862d6e3fc8e0b33c03fb87c3a9faf00da62dbbbe02da78315872cb52c279b68d9f28763672269bc67a19213fe81215347",
+  "rootFolder": "./disk",
+  "uploadMaxSize": 1099511627776,
+  "showREADME": true,
+  "permissions": {
+    "fileCreate": true,
+    "fileUpload": true,
+    "fileDelete": true,
+    "fileEditor": true,
+    "folderCreate": true,
+    "folderDelete": true
+  },
+  "banned": [
+    "html",
+    "php"
+  ]
+}

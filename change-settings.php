@@ -7,7 +7,7 @@ require "tool.php";
 
 // set variable
 $config=readConfig();
-$root_dir=$config['rootFolder'];
+$old_permissions=$config["permissions"];
 $current_dir=$_SESSION["current_dir"];
 $host=$_SESSION["host"];
 
@@ -19,10 +19,23 @@ if (!is_login()) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // get post info
-    #
+    // normal config
+    $new_config = array(
+        "login"=> $config['login'],
+        "rootFolder"=> $_POST["rootFolder"],
+        "uploadMaxSize"=> $_POST["uploadMaxSize"],
+        "showREADME"=> ($_POST["showREADME"] === "README_checked") ? true:false
+    );
 
-    header("Location: admin-panel.php");
+    // permissions config
+    $post_permissions = $_POST["permissions"];
+    $old_permissions_keys = get_keys($old_permissions);
+    $new_permissions = array();
+    foreach ($post_permissions as $permission) {
+        echo $permission." --- ";
+    }
+
+    // header("Location: admin-panel.php");
 } else {
     header("Location: admin-panel.php");
 }
