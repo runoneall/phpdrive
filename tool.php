@@ -23,7 +23,7 @@ function set_login_status($username, $status) {
 }
 
 function is_login() {
-    return (isset($_COOKIE["is_login"]) && $_COOKIE["is_login"] === true);
+    return (isset($_COOKIE["is_login"]) && $_COOKIE["is_login"] === "true");
 }
 
 function is_have($string, $char) {
