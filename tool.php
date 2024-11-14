@@ -17,6 +17,15 @@ function is_binary($filePath) {
     return false;
 }
 
+function set_login_status($username, $status) {
+    setcookie("is_login", $status, 0, "*");
+    setcookie("username", $username, 0, "*");
+}
+
+function is_login() {
+    return (isset($_COOKIE["is_login"]) && $_COOKIE["is_login"] === true);
+}
+
 function is_have($string, $char) {
     return (strpos($string, $char) !== false);
 }

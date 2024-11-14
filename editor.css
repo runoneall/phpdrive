@@ -66,4 +66,5 @@
     border-right: none;
     border-bottom: none;
     outline: none;
+    overflow: hidden;
 }

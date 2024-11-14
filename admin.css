@@ -1,0 +1,37 @@
+.login-box {
+    position: relative;
+    height: 92vh;
+    font-weight: normal;
+}
+.login-form {
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+#login-username {
+    border: 1px solid black;
+    outline: none;
+}
+#login-password {
+    border: 1px solid black;
+    outline: none;
+}
+#back {
+    font-size: large;
+    font-family: monospace;
+    font-weight: bold;
+    text-decoration: none;
+    vertical-align: middle;
+}
+#back:hover {
+    cursor: default;
+}
+#login {
+    background: none;
+    border: none;
+    color: blue;
+    font-size: large;
+    font-family: monospace;
+    font-weight: bold;
+}
