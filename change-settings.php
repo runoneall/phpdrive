@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $new_config = array(
         "login"=> $config['login'],
         "rootFolder"=> $_POST["rootFolder"],
-        "uploadMaxSize"=> $_POST["uploadMaxSize"],
+        "uploadMaxSize"=> intval($_POST["uploadMaxSize"]),
         "showREADME"=> ($_POST["showREADME"] === "README_checked") ? true:false
     );
 
@@ -31,11 +31,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $post_permissions = $_POST["permissions"];
     $old_permissions_keys = get_keys($old_permissions);
     $new_permissions = array();
-    foreach ($post_permissions as $permission) {
-        echo $permission." --- ";
+    foreach ($old_permissions_keys as $permission_key) {
+        // if check
+        if (in_array($permission_key, $post_permissions)) {
+            $new_permissions[$permission_key] = true;
+        }
+        // if uncheck
+        if (!in_array($permission_key, $post_permissions)) {
+            $new_permissions[$permission_key] = false;
+        }
     }
+    $new_config["permissions"] = $new_permissions;
 
-    // header("Location: admin-panel.php");
+    // banned config
+    $post_banned = $_POST['banned'];
+    $new_banned = text_to_list($post_banned, ',');
+    $new_config['banned'] = $new_banned;
+
+    // save config
+    writeConfig($new_config);
+    header("Location: admin-panel.php");
 } else {
     header("Location: admin-panel.php");
 }

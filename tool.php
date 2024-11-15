@@ -37,6 +37,7 @@ function list_to_text($list, $split) {
     foreach ($list as $item) {
         $string = $string.$item.$split;
     }
+    $string = substr($string, 0, -1);
     return $string;
 }
 
