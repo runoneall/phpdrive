@@ -12,9 +12,6 @@
     font-size: large;
     width: 80%;
 }
-#file-path:hover {
-    cursor: default;
-}
 .editor-menu {
     display: flex;
     align-items: center;

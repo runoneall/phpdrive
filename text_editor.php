@@ -55,7 +55,7 @@ header('Content-Type: text/html;charset=utf-8');
             <br>
             <div class="file-info">
                 编辑:&nbsp;
-                <input type="text" id="file-path" name="file-path" value=<?php echo $file_path ?> readonly>
+                <input type="text" id="file-path" name="file-path" value=<?php echo $file_path ?>>
             </div>
             <div class="editor-menu">
                 &nbsp;&nbsp;
