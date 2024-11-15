@@ -18,8 +18,8 @@ function is_binary($filePath) {
 }
 
 function set_login_status($username, $status) {
-    setcookie("is_login", $status, 0, "*");
-    setcookie("username", $username, 0, "*");
+    setcookie("is_login", $status, 0, "/");
+    setcookie("username", $username, 0, "/");
 }
 
 function get_login_username() {
