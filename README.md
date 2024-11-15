@@ -1,3 +1,3 @@
-# php-file-browser
+# phpdrive (php-file-browser重制版)
 
-将你的免费主机变成网盘
+demo: [phpdrive-dev.web1337.net](http://phpdrive-dev.web1337.net/)
