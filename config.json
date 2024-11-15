@@ -9,8 +9,7 @@
     "fileDelete": true,
     "fileEditor": true,
     "folderCreate": true,
-    "folderDelete": true,
-    "allowApi": true
+    "folderDelete": true
   },
   "banned": [
     "html",
